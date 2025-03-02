@@ -1,0 +1,263 @@
+:root {
+    --color-primary: #4B69FD;
+    --color-paleta1: #5F0F40;
+    --color-paleta2: #3F7CAC;
+    --color-paleta3: #EE8434;
+    --color-paleta4: #50D8D7;
+    --color-paleta5: #F51AA4;
+    --color-secondary: #FFF9EB;
+    --color-tertiary: #C4C4C4;
+    --color-button: #fe652b;
+    --color-button-hover: #e55720;
+    --color-text: #444444;
+    --color-white: #FFFFFF;
+}
+
+/* Estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.header-banner {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* Ocupa 100% da altura da tela */
+    overflow: hidden;
+}
+
+.header-banner img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção da imagem e cobre todo o espaço */
+    object-position: center; /* Centraliza a imagem */
+    z-index: 1; /* Garante que a imagem fique atrás do título */
+}
+
+
+/* Seção de entrada */
+.input-section {
+    position: absolute; /* Posiciona o título de forma absoluta */
+    top: 70vh; /* Move o título para 50% da altura do container */
+    left: 50vw; /* Move o título para 50% da largura do container */
+    transform: translate(-50%, -50%); /* Ajusta o posicionamento para centralizar exatamente */
+    z-index: 2; /* Garante que o título fique sobre a imagem */
+    flex: 60%;
+    border-radius: 64px 64px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Títulos */
+.main-title {
+    position: absolute; /* Posiciona o título de forma absoluta */
+    top: 20vh; /* Move o título para 50% da altura do container */
+    left: 50vw; /* Move o título para 50% da largura do container */
+    transform: translate(-50%, -50%); /* Ajusta o posicionamento para centralizar exatamente */
+    z-index: 2; /* Garante que o título fique sobre a imagem */
+    font-size: 4vw;
+    font-family: "Merriweather", serif;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--color-white);
+}
+
+.section-title {
+    font-family: "Roboto", "Arial", sans-serif;;
+    font-size: 2vw;
+    font-weight: 700;
+    margin: 2vh 0;
+    text-align: center;
+    padding: 10px 90px;
+    color: var(--color-white);
+    background-color: var(--color-paleta5);
+    border-radius:25px;
+}
+
+/* Contêineres de entrada e botão */
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.input-name {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #000; /* Cor da borda padrão */
+    border-radius: 25px 0 0 25px;
+    font-family: "Roboto", "Arial", sans-serif;;
+    font-size: 22px;
+    color: #93999e;
+    transition: color 0.3s ease, border-color 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.input-name:hover {
+    border-color: #ffffff; /* Cor da borda ao passar o mouse */
+}
+
+.input-name:focus {
+    border-color: #ffffff; /* Cor da borda ao focar no campo */
+    outline: none; /* Remove o contorno padrão (opcional) */
+}
+
+.button-container {
+    width: 300px;
+    justify-content: center;
+}
+
+/* Estilos de entrada de texto */
+.input-title {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid var(--color-paleta5);
+    border-right: none;
+    border-radius: 25px 0 0 25px;
+    font-family: "Roboto", "Arial", sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos de botão */
+button {
+    padding: 15px 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: border-color 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.button-add {
+    background-color: var(--color-paleta5);
+    color: var(--color-white);
+    border-radius: 0 25px 25px 0;
+}
+
+.button-add:hover {
+    border-color: #c83131; /* Cor da borda ao passar o mouse */
+}
+
+/* Listas */
+ul {
+    list-style-type: none;
+    color: var(--color-white);
+    font-family: "Inter", sans-serif;
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+.result-list {
+    margin-top: 15px;
+    color: var(--color-paleta4);
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Botão de sortear título */
+.button-draw {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px;
+    color: var(--color-white);
+    background-color: var(--color-paleta5);
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 18px;
+}
+
+.button-draw:hover {
+    background-color: var(--color-paleta5);
+    border-color:#F51AA4
+}
+
+.button-draw img {
+    margin-right: 40px;
+}
+
+/* Imagem de fundo */
+.header-banner img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1; /* Fica atrás de tudo */
+}
+
+/* Contêiner do toggle */
+.toggle-container {
+    position: absolute;
+    top: -100%; /* Ajuste conforme a posição Y do ícone na imagem de fundo */
+    left: 30%; /* Ajuste conforme a posição X do ícone na imagem de fundo */
+    width: 100px; /* Ajuste conforme a largura do ícone */
+    height: 120px; /* Ajuste conforme a altura do ícone */
+    z-index: 2; /* Fica acima da imagem de fundo, mas atrás dos botões */
+}
+
+/* Checkbox escondido */
+.toggle-checkbox {
+    display: none;
+}
+
+/* Botão de toggle */
+.toggle-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 4; /* Fica acima de todos os elementos */
+}
+
+/* Ícone "apagado" */
+.icone-apagado {
+    width: 1002%;
+    height: 1002%;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2; /* Fica acima da imagem de fundo, mas atrás dos botões */
+}
+
+/* Esconde o ícone "apagado" quando o checkbox está marcado */
+.toggle-checkbox:checked ~ .toggle-button .icone-apagado {
+    opacity: 0;
+}
+
+/* Botões (exemplo) */
+.button-add, .button-draw {
+    z-index: 3; /* Fica acima do ícone "apagado" */
+}
