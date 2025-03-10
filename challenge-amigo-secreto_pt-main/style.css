@@ -36,56 +36,78 @@ body {
 }
 
 .header-banner {
-    position: relative;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh; /* Ocupa 100% da altura da tela */
+    position: relative; /* Agora serve como referência */
+    width: 100vw; /* Garante que sempre ocupe a largura total */
+    height: 100vh; /* Garante que sempre ocupe a altura total */
     overflow: hidden;
 }
 
 .header-banner img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantém a proporção da imagem e cobre todo o espaço */
-    object-position: center; /* Centraliza a imagem */
-    z-index: 1; /* Garante que a imagem fique atrás do título */
+    object-fit: cover; /* Mantém a proporção e preenche a tela */
 }
+
+.img-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.img-container button {
+    position: absolute;
+    top: 41.6%;  /* 600 / 1440 (altura original) */
+    left: 44.6%; /* 600 / 1440 (largura original) */
+    transform: translate(-50%, -50%);
+    width: 10%;
+    height: 10%;
+    border: none;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
 
 
 /* Seção de entrada */
 .input-section {
     position: absolute; /* Posiciona o título de forma absoluta */
-    top: 70vh; /* Move o título para 50% da altura do container */
+    top: 45vh; /* Move o título para 50% da altura do container */
     left: 50vw; /* Move o título para 50% da largura do container */
     transform: translate(-50%, -50%); /* Ajusta o posicionamento para centralizar exatamente */
-    z-index: 2; /* Garante que o título fique sobre a imagem */
-    flex: 60%;
-    border-radius: 64px 64px 0 0;
+    z-index: 9; /* Garante que o título fique sobre a imagem */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    width: 100%;
+    padding: 20px; /* Reduz o padding */
+    width: auto; /* Define a largura como automática (ajusta ao conteúdo) */
+    max-width: 100%; /* Limita a largura máxima para evitar que ocupe toda a tela */
+    max-height:100%;
 }
 
 /* Títulos */
 .main-title {
     position: absolute; /* Posiciona o título de forma absoluta */
-    top: 20vh; /* Move o título para 50% da altura do container */
+    top: 10vh; /* Move o título para 50% da altura do container */
     left: 50vw; /* Move o título para 50% da largura do container */
     transform: translate(-50%, -50%); /* Ajusta o posicionamento para centralizar exatamente */
     z-index: 2; /* Garante que o título fique sobre a imagem */
     font-size: 4vw;
-    font-family: "Merriweather", serif;
-    font-weight: 900;
-    font-style: italic;
+    font-family: "Roboto", "Arial", sans-serif;;
+    padding: 0px 10px;
     color: var(--color-white);
+    border-radius:25px;
+    text-shadow:
+      1px 1px 0 #000,
+      -1px 1px 0 #000,
+      -1px -1px 0 #000,
+      1px -1px 0 #000;
 }
 
 .section-title {
@@ -107,12 +129,13 @@ body {
     width: 100%;
     max-width: 600px;
     margin-top: 20px;
+    position: relative;
 }
 
 .input-name {
     width: 100%;
     padding: 10px;
-    border: 2px solid #000; /* Cor da borda padrão */
+    border: 1px solid #000000; /* Cor da borda padrão */
     border-radius: 25px 0 0 25px;
     font-family: "Roboto", "Arial", sans-serif;;
     font-size: 22px;
@@ -132,6 +155,25 @@ body {
 .button-container {
     width: 300px;
     justify-content: center;
+    position: relative;
+}
+
+/* Estilos do botão "Adicionar" */
+.button-add {
+    position: absolute; /* Posicionamento absoluto em relação ao container "pai" */
+    top: 50%; /* Centraliza verticalmente */
+    left: 92%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta o posicionamento exato */
+    background-color: var(--color-paleta5); /* Cor rosa */
+    color: var(--color-white);
+    border-radius: 0 25px 25px 0;
+    padding: 17px 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
 }
 
 /* Estilos de entrada de texto */
@@ -146,7 +188,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilos de botão */
 button {
     padding: 15px 30px;
     font-family: "Inter", sans-serif;
@@ -158,14 +199,15 @@ button {
     transition: border-color 0.3s ease; /* Adiciona uma transição suave */
 }
 
+/* Estilos específicos para o botão "Adicionar" */
 .button-add {
-    background-color: var(--color-paleta5);
+    background-color: var(--color-paleta5); /* Cor rosa */
     color: var(--color-white);
-    border-radius: 0 25px 25px 0;
+    border-radius: 0 36px 26px 0;
 }
 
 .button-add:hover {
-    border-color: #c83131; /* Cor da borda ao passar o mouse */
+    border-color: #000000; /* Cor da borda ao passar o mouse */
 }
 
 /* Listas */
@@ -206,58 +248,39 @@ ul {
     margin-right: 40px;
 }
 
-/* Imagem de fundo */
-.header-banner img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    z-index: 1; /* Fica atrás de tudo */
+/* Estilo para o nome sorteado */
+.result-list li {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-/* Contêiner do toggle */
-.toggle-container {
-    position: absolute;
-    top: -100%; /* Ajuste conforme a posição Y do ícone na imagem de fundo */
-    left: 30%; /* Ajuste conforme a posição X do ícone na imagem de fundo */
-    width: 100px; /* Ajuste conforme a largura do ícone */
-    height: 120px; /* Ajuste conforme a altura do ícone */
-    z-index: 2; /* Fica acima da imagem de fundo, mas atrás dos botões */
+/* Estilo para a mensagem aleatória */
+.result-list .mensagem-aleatoria {
+    font-size: 18px; /* Tamanho da fonte da mensagem */
+    color: var(--color-white); /* Cor da mensagem (branca) */
+    margin-top: 10px; /* Espaçamento acima da mensagem */
 }
 
-/* Checkbox escondido */
-.toggle-checkbox {
-    display: none;
+#botaoReset {
+    display: block; /* Mantém o botão sempre visível */
+    position: relative;
+    padding: 10px 30px;
+    left: 37%;
+    background-color: var(--color-white);
 }
 
-/* Botão de toggle */
-.toggle-button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    z-index: 4; /* Fica acima de todos os elementos */
-}
-
-/* Ícone "apagado" */
-.icone-apagado {
-    width: 1002%;
-    height: 1002%;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 2; /* Fica acima da imagem de fundo, mas atrás dos botões */
-}
-
-/* Esconde o ícone "apagado" quando o checkbox está marcado */
-.toggle-checkbox:checked ~ .toggle-button .icone-apagado {
-    opacity: 0;
-}
-
-/* Botões (exemplo) */
-.button-add, .button-draw {
-    z-index: 3; /* Fica acima do ícone "apagado" */
+.total-participantes {
+    font-size: 1.2em;
+    font-weight:bold;
+    color: #32f0f0;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    text-shadow:
+      1px 1px 0 #000,
+      -1px 1px 0 #000,
+      -1px -1px 0 #000,
+      1px -1px 0 #000;
+    text-align:center;
+    
 }
