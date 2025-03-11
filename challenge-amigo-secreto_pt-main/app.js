@@ -1,4 +1,5 @@
 let conexoesLinkedIn = [
+        
         { iniciais: "ARB", link: "aHR0cHM6Ly9saW5rZWRpbi5jb20vaW4vYWxhbi1yZXluYWxkby8=" },
         { iniciais: "MAD", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL21hcmluYS1hbGJhbm8tZG9uYXRvLTViNDEzNjI5Ny8=" },
         { iniciais: "VBBDA", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL3ZpbmlpYm9yZG9uLw==" },
@@ -27,7 +28,7 @@ let conexoesLinkedIn = [
         { iniciais: "AS", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2FuZHJlaWEtc2VtZWRvLWE2NDEwYjIzNC8=" },
         { iniciais: "LO", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2x1aXMtb2N0YXZpby8=" },
         { iniciais: "AC", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2FuYWdzd2FjYXJvbGluYS8=" },
-        { iniciais: "LM", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2x1YW5hbWFyaWEtZGV2Lw==" },
+        { iniciais: "LD", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2x1YW5hbWFyaWEtZGV2Lw==" },
         { iniciais: "ALO", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2x1aXphZGFzby8=" },
         { iniciais: "CC", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2NsYXVkaWEtY2FwZWxldHRpLTMxNzU2NDI5YS8=" },
         { iniciais: "RL", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL3JvZ2VyLWxlb25lbC8=" },
@@ -44,13 +45,14 @@ let conexoesLinkedIn = [
         { iniciais: "FS", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2ZpbGlwZS1zYW50b3MtMDY5M2E3MzQ1Lw==" },
         { iniciais: "JF", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2p1LWZlcm5hbmRlcy8=" },
         { iniciais: "LM", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2xldMOtY2lhLW1vcmV0dGlzLw==" },
-        { iniciais: "LDAF", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2xldGljaWEtZGUtdWFsbWVpZGEtZmVycmVpcmEtMTgwODZhMTgwLw==" }
+        { iniciais: "LDAF", link: "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2xldGljaWEtZGUtdWFsbWVpZGEtZmVycmVpcmEtMTgwODZhMTgwLw==" },
+    
     ];
+
 
 let amigos = []; // Lista para armazenar os nomes inseridos
 let incluirConexoes = true; // responsável por sincronizar o icone com a lógica por trás, caso fosse false seria desincronizado com as imagens.
 let sorteioConexoes = {}; // Objeto para contar os sorteios de cada conexão
-let totalConexoes = conexoesLinkedIn.length; // linhas em conexoesLinkedIn
 let contadorConexoesSorteadas = 0;
 
 // Inicializa o contador de sorteios para cada conexão
@@ -95,7 +97,6 @@ function adicionarAmigo() {
     }
 }
 
-// Evento de tecla "Enter" para adicionar um amigo
 document.getElementById("amigo").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         adicionarAmigo();
@@ -142,15 +143,14 @@ document.querySelector(".img-container button").addEventListener("click", functi
 });
 
 // Função para sortear um amigo ou conexão
-// Função para sortear um amigo ou conexão
 function sortearAmigo() {
-    let listaSorteio = [...amigos]; // Cria uma cópia da lista de amigos
+    let sorteado = null;
 
-    // Adiciona as conexões do LinkedIn à lista de sorteio apenas se incluirConexoes for true
+    // Cria a lista de sorteio com amigos e conexões (se incluirConexoes for true)
+    let listaSorteio = [...amigos]; // Cópia da lista de amigos
     if (incluirConexoes) {
-        // Filtra as conexões que ainda podem ser sorteadas (até 3 vezes)
         listaSorteio = listaSorteio.concat(conexoesLinkedIn.filter(conexao => {
-            return sorteioConexoes[conexao.iniciais] < 3; // Limita a 3 sorteios por conexão
+            return sorteioConexoes[conexao.iniciais] < 1; // Limita a 2 sorteios por conexão
         }));
     }
 
@@ -162,10 +162,10 @@ function sortearAmigo() {
 
     // Sorteia um participante
     let indiceSorteado = Math.floor(Math.random() * listaSorteio.length);
-    let sorteado = listaSorteio[indiceSorteado];
+    sorteado = listaSorteio[indiceSorteado]; // Define o sorteado
 
     // Atualiza os contadores
-    if (incluirConexoes && typeof sorteado !== "string") { // Se for uma conexão do LinkedIn
+    if (sorteado && incluirConexoes && typeof sorteado !== "string") { // Se for uma conexão do LinkedIn
         if (sorteioConexoes[sorteado.iniciais] === 0) { // Verifica se é a primeira vez que a conexão é sorteada
             contadorConexoesSorteadas++; // Incrementa o contador global apenas na primeira vez
         }
@@ -173,37 +173,48 @@ function sortearAmigo() {
     }
 
     // Exibe o resultado
+    exibirResultado(sorteado);
+
+    // Verifica se o contador atingiu 46 e exibe a mensagem de platinador
+    if (contadorConexoesSorteadas === 46) {
+        alert("Parabéns!!!🎁🎁🎁 então você é um platinador 👀! Obrigado por jogar ❤️");
+    }
+}
+
+// Função para exibir o resultado
+function exibirResultado(sorteado) {
     let resultado = document.getElementById("resultado");
     resultado.innerHTML = ""; // Limpa o resultado anterior
 
-    if (typeof sorteado === "string") { // nome digitado
-        resultado.innerHTML = `<li>🎉 ${sorteado} 🎉</li>`;
-    } else { // Se for uma conexão do LinkedIn
-        let linkDecodificado = atob(sorteado.link); // decodifica o link 
-        resultado.innerHTML = `
-            <li>
-                <a href="${linkDecodificado}" target="_blank" style="color: inherit; text-decoration: none; cursor: pointer;">
-                   🎊  ${sorteado.iniciais} 🎊 
-                </a>
-            </li>
-            <li>${formatarContador()}</li> <!-- Exibe o contador no formato 00|46 -->
-        `;
+    if (sorteado) {
+        if (typeof sorteado === "string") { // Nome digitado
+            resultado.innerHTML = `<li>🎉 ${sorteado} 🎉</li>`;
+        } else { // Se for uma conexão do LinkedIn
+            let linkDecodificado = atob(sorteado.link); // Decodifica o link 
+            resultado.innerHTML = `
+                <li>
+                    <a href="${linkDecodificado}" target="_blank" style="color: inherit; text-decoration: none; cursor: pointer;">
+                       🎊  ${sorteado.iniciais} 🎊 
+                    </a>
+                </li>
+                <li>${typeof formatarContador === "function" ? formatarContador() : "Contador inválido"}</li> <!-- Exibe o contador no formato 00|46 -->
+            `;
 
-        // Exibe uma mensagem de resultado
-        if (incluirConexoes) {
-            let mensagem;
-            if (sorteado.iniciais === "ARB") { // Exceção para quando você for sorteado
-                mensagem = mensagemEspecial;
-            } else {
-                mensagem = mensagensResultado[Math.floor(Math.random() * mensagensResultado.length)];
+            if (incluirConexoes) {
+                let mensagem;
+                if (sorteado.iniciais === "ARB") { 
+                    mensagem = mensagemEspecial;
+                } else {
+                    mensagem = mensagensResultado[Math.floor(Math.random() * mensagensResultado.length)];
+                }
+                resultado.innerHTML += `<li class="mensagem-aleatoria">${mensagem}</li>`;
             }
-            resultado.innerHTML += `<li class="mensagem-aleatoria">${mensagem}</li>`;
         }
     }
 }
 
 function formatarContador() {
     let contadorConexao = contadorConexoesSorteadas.toString().padStart(2, "0"); // Número de conexões sorteadas pela primeira vez
-    let contadorTotal = totalConexoes.toString().padStart(2, "0"); // Número total de conexões
+    let contadorTotal = conexoesLinkedIn.length.toString().padStart(2, "0"); // Número total de conexões
     return `${contadorConexao}|${contadorTotal}`;
 }
